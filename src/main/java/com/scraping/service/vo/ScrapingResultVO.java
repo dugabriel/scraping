@@ -13,7 +13,7 @@ public class ScrapingResultVO {
 
     private String link;
 
-    private Long price;
+    private String price;
 
     private String name;
 }

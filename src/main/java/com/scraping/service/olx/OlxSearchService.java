@@ -13,9 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
-
-import static java.util.Arrays.*;
 
 @Slf4j
 @Service
@@ -23,7 +22,7 @@ public class OlxSearchService implements ScrapingService {
 
     @Override
     public List<ScrapingResultVO> scrapingList(ScrapingVO scrapingVO) {
-        List<ScrapingResultVO> scrapingResultList = asList();
+        List<ScrapingResultVO> scrapingResultList = new ArrayList<>();
 
         log.info("Initiate scraping for user {}", scrapingVO.getUserId());
 
@@ -38,11 +37,11 @@ public class OlxSearchService implements ScrapingService {
                 String title = linkItem.getAttribute("title");
                 HtmlSpan spanPrice = (HtmlSpan) item.getFirstByXPath(".//span[@class='m7nrfa-0 eJCbzj sc-fzsDOv kHeyHD']");
 
-                log.info("OLX --> Found item {}. Price {}. Link {}", title, Long.parseLong(spanPrice.getTextContent()), linkItem.getHrefAttribute());
+                log.info("OLX --> Found item {}. Price {}. Link {}", title, spanPrice.getTextContent(), linkItem.getHrefAttribute());
 
                 scrapingResultList.add(new ScrapingResultVO().builder()
                         .name(title)
-                        .price(Long.parseLong(spanPrice.getTextContent()))
+                        .price(spanPrice.getTextContent())
                         .link(linkItem.getHrefAttribute())
                         .build());
             });

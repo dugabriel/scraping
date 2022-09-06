@@ -29,4 +29,10 @@ public class SearchController {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(searchService.findResearches(userId));
     }
+
+    @DeleteMapping("/remove/{searchId}")
+    public ResponseEntity deleteSearch(@PathVariable String searchId) {
+        searchService.deleteSearch(searchId);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
 }

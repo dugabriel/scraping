@@ -2,6 +2,7 @@ package com.scraping.api.v1.dto;
 
 import lombok.Data;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -14,8 +15,9 @@ public class UserDTO {
     @NotEmpty
     private String name;
 
-    @NotNull
+    @Email
     @NotBlank
     @NotEmpty
+    @NotNull
     private String email;
 }
