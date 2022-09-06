@@ -15,13 +15,10 @@ import java.util.List;
 @RestController("SearchControllerV1")
 @RequestMapping(RestPath.BASE_PATH + "/search")
 public class SearchController {
-
     @Autowired
     private Mapper mapper;
-
     @Autowired
     private SearchService searchService;
-
     @PostMapping
     public ResponseEntity<Search> createSearch(@Valid @RequestBody SearchDTO searchDTO) {
         return ResponseEntity.status(HttpStatus.CREATED)
