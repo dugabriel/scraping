@@ -6,9 +6,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
 @Document("user")
 @Data
-public class User extends BaseEntity{
+public class User extends BaseEntity {
 
     @Id
     private String id;

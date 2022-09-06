@@ -1,4 +1,4 @@
-# SpringBoot with mongoDB
+#  Webscraping
 
 ![GitHub language count](https://img.shields.io/github/languages/count/dugabriel/mongodbwithspring?style=for-the-badge)
 ![Open issues](https://img.shields.io/github/issues/dugabriel/mongodbwithspring?style=for-the-badg)
@@ -7,11 +7,6 @@
 
 O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
 
-- [x] Criar cadastro da lista de favoritos
-- [x] Criar cadastro de cliente
-- [x] Criar cadastro de produto
-- [x] CRUD da lista de favoritos
-- [x] Regras de negócio
 - [ ] Teste de performance
 - [ ] Refactor
 - [ ] Testes unitários
@@ -49,19 +44,5 @@ Agora, para subir o app basta rodar o comando:
 Para usar as apis, basta acessar o endereço do swagger:
 
 ```
-http://<host local>:8080/ecommerce/swagger-ui/index.html
+http://<host local>:8080/scraping/swagger-ui/index.html
 ```
-
-
-## 📫 Contribuindo para o projeto
-
-Para contribuir, siga estas etapas:
-
-1. Bifurque este repositório.
-2. Crie um branch: `git checkout -b <nome_branch>`.
-3. Faça suas alterações e confirme-as: `git commit -m '<mensagem_commit>'`
-4. Envie para o branch original: `git push origin <nome_do_projeto> / <local>`
-5. Crie a solicitação de pull.
-
-Como alternativa, consulte a documentação do GitHub em [como criar uma solicitação pull](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
-
