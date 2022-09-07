@@ -16,4 +16,6 @@ public class ScrapingResultVO {
     private String price;
 
     private String name;
+
+    private String imageUrl;
 }
