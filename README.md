@@ -1,7 +1,7 @@
 #  Webscraping
 
-![GitHub language count](https://img.shields.io/github/languages/count/dugabriel/mongodbwithspring?style=for-the-badge)
-![Open issues](https://img.shields.io/github/issues/dugabriel/mongodbwithspring?style=for-the-badg)
+![GitHub language count](https://img.shields.io/github/languages/count/dugabriel/scraping?style=for-the-badge)
+![Open issues](https://img.shields.io/github/issues/dugabriel/scraping?style=for-the-badg)
 
 ### Ajustes e melhorias
 

@@ -18,7 +18,6 @@ import java.util.Optional;
 
 @Service
 public class SearchService {
-
     @Autowired
     private SearchRepository searchRepository;
 
@@ -74,7 +73,7 @@ public class SearchService {
                 .startAt(new Date())
                 .withSchedule(SimpleScheduleBuilder.simpleSchedule()
                         .withMisfireHandlingInstructionFireNow()
-                        .withIntervalInSeconds(10)
+                        .withIntervalInSeconds(60)
                         .repeatForever())
                 .build();
 
