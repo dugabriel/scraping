@@ -1,0 +1,1 @@
+mvn clean install && sleep 5 && echo "create image..." && docker build --force-rm --no-cache -t spring/scraping .
