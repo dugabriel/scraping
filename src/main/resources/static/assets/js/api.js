@@ -46,7 +46,7 @@ function getToken(email, password) {
     $.ajax(settings)
         .done(function (response) {
             console.log(response);
-            document.cookie = "token=Bearer "+token+"; max-age=86400; path=/;";
+            document.cookie = "token=Bearer "+response.token+"; max-age=86400; path=/;";
             return true;
         })
         .fail(function (response) {
