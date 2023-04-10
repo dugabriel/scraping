@@ -15,6 +15,7 @@ import java.util.List;
 
 @RestController("UserControllerV1")
 @RequestMapping(RestPath.BASE_PATH + "/user")
+@CrossOrigin("*")
 public class UserController {
 
     @Autowired
