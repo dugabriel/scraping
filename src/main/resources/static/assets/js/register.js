@@ -1,10 +1,8 @@
 $(document).ready(function () {
-
     $("#submitButton").click(function () {
         createUser();
     });
 });
-
 
 function createUser() {
     let name = $("#name").val();

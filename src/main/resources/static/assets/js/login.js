@@ -11,8 +11,11 @@ function login() {
     let password = $("#password").val();
 
     if (validateFields(email, password)) {
-        getToken(email, password);
-        location.replace("/");
+        if (getToken(email, password)) {
+            
+            
+            //location.replace("/");
+        }
     }
    
 }

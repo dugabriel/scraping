@@ -38,16 +38,19 @@ function getToken(email, password) {
             "Content-Type": "application/json"
         },
         "data": JSON.stringify({
-            "username": "eduardofranciscogabriel@gmail.com",
-            "password": "Totvs@123"
+            "username": email,
+            "password": password
         }),
     };
 
     $.ajax(settings)
         .done(function (response) {
             console.log(response);
+            return true;
         })
         .fail(function (response) {
-            console.log('Login ou senha inválida');
+            console.log(response);
+            alert('Login ou senha inválida')
+            return false;
         });
 }
