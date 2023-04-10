@@ -14,7 +14,9 @@ function createUser() {
 
 
     if (validateFields(name, email, password, repassword)) {
-        register(name, password, email);
+        if (register(name, password, email)) {
+            location.replace("/login/sign-in.html");
+        }
     }
 }
 
@@ -37,4 +39,11 @@ function validateFields(name, email, password, repassword) {
     }
 
     return true;
+}
+
+function cleanFields() {
+    let name = $("#name").val("");
+    let email = $("#email").val("");
+    let password = $("#password").val("");
+    let repassword = $("#repassword").val("");
 }
