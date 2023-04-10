@@ -1,5 +1,6 @@
 package com.scraping.api.v1.dto;
 
+import com.scraping.domain.Frequency;
 import com.scraping.domain.SearchSource;
 import lombok.Data;
 
@@ -20,4 +21,7 @@ public class SearchDTO {
     @NotNull
     @NotBlank
     private String searchExpression;
+
+    @NotNull
+    private Frequency frequency;
 }

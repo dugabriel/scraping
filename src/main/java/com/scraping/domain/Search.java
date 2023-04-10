@@ -32,4 +32,9 @@ public class Search extends BaseEntity {
     @NotNull
     @NotEmpty
     private String searchExpression;
+
+    @NotBlank
+    @NotNull
+    @NotEmpty
+    private Frequency frequency;
 }

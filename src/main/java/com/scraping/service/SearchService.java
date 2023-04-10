@@ -6,6 +6,7 @@ import com.scraping.exception.SchedulerErrorException;
 import com.scraping.exception.SearchNotFoundException;
 import com.scraping.exception.UserNotFoundException;
 import com.scraping.repository.SearchRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.quartz.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class SearchService {
     @Autowired
     private SearchRepository searchRepository;
@@ -31,7 +33,7 @@ public class SearchService {
     public Search create(Search search) {
         checkValidUser(search.getUserId());
         Search createdSearch = searchRepository.insert(search);
-        createJob(createdSearch.getId());
+        createJob(createdSearch.getId(), createdSearch.getFrequency().getValue());
         return createdSearch;
     }
 
@@ -64,7 +66,7 @@ public class SearchService {
         }
     }
 
-    private void createJob(String searchId) {
+    private void createJob(String searchId, int frequency) {
         JobDetail jobDetail = JobBuilder.newJob(SchedulingService.class).withIdentity(searchId).build();
         jobDetail.getJobDataMap().put("searchId", searchId);
 
@@ -73,7 +75,7 @@ public class SearchService {
                 .startAt(new Date())
                 .withSchedule(SimpleScheduleBuilder.simpleSchedule()
                         .withMisfireHandlingInstructionFireNow()
-                        .withIntervalInSeconds(60)
+                        .withIntervalInMinutes(frequency)
                         .repeatForever())
                 .build();
 
@@ -82,6 +84,8 @@ public class SearchService {
             scheduler.scheduleJob(jobDetail, trigger);
             scheduler.start();
         } catch (IOException | SchedulerException e) {
+            log.error("An error occurred. Removing search with id {}", searchId);
+            deleteSearch(searchId);
             throw new SchedulerErrorException(e.getMessage());
         }
     }

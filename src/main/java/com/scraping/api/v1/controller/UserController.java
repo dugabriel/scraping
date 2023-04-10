@@ -1,5 +1,6 @@
 package com.scraping.api.v1.controller;
 
+import com.scraping.api.v1.dto.SignupRequestDTO;
 import com.scraping.api.v1.dto.UserDTO;
 import com.scraping.api.v1.mapper.Mapper;
 import com.scraping.domain.User;
@@ -23,9 +24,9 @@ public class UserController {
     private UserService userService;
 
     @PostMapping
-    public ResponseEntity<User> createUser(@Valid @RequestBody UserDTO userDTO) {
+    public ResponseEntity<User> createUser(@Valid @RequestBody SignupRequestDTO signupRequest) {
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(userService.create(mapper.map(userDTO, User.class)));
+                .body(userService.create(mapper.map(signupRequest, User.class)));
     }
 
     @GetMapping

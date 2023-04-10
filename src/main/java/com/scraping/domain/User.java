@@ -19,4 +19,11 @@ public class User extends BaseEntity {
     @NotNull
     @NotBlank
     private String email;
+
+    @NotBlank
+    private String username;
+
+    @NotNull
+    @NotBlank
+    private String password;
 }

@@ -60,7 +60,7 @@ public class MailSenderService {
     private String getFreemarkerTemplate(Map<String, Object> model) {
         StringWriter stringWriter = new StringWriter();
         try {
-            freemarkerConfiguration.getTemplate("emailOlx.flth").process(model, stringWriter);
+            freemarkerConfiguration.getTemplate("emailOlxList.flth").process(model, stringWriter);
         } catch (TemplateException | RuntimeException | IOException e) {
             throw new FreemarkerTemplateErrorException(e.getMessage(), e.getCause());
         }
