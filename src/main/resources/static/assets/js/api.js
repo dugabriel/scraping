@@ -46,7 +46,7 @@ function getToken(email, password) {
     $.ajax(settings)
         .done(function (response) {
             console.log(response);
-            return true;
+            return response.token;
         })
         .fail(function (response) {
             console.log(response);
