@@ -1,4 +1,4 @@
-const baseURL = "https://backend-scraping.herokuapp.com/"
+const baseURL = "https://backend-scraping.herokuapp.com"
 
 function register(name, password, email) {
     var settings = {
