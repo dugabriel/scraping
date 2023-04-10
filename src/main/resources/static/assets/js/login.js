@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
     $("#login").click(function () {
         login();
     });
@@ -11,14 +10,8 @@ function login() {
     let password = $("#password").val();
 
     if (validateFields(email, password)) {
-        const token = getToken(email, password);
-
-        if (token != "" || token != null) {
-            const jwt = parseJWT(token);
-            console.log(jwt);
-
-            document.cookie = "token=Bearer "+token+"; max-age=86400; path=/;";
-            //location.replace("/");
+        if (getToken(email, password)) {
+            location.replace("/");
         } else {
             let password = $("#password").val("");
         }

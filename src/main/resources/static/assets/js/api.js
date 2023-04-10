@@ -46,11 +46,17 @@ function getToken(email, password) {
     $.ajax(settings)
         .done(function (response) {
             console.log(response);
-            return response.token;
+            document.cookie = "token=Bearer "+token+"; max-age=86400; path=/;";
+            return true;
         })
         .fail(function (response) {
             console.log(response);
             alert('Login ou senha inválida')
             return false;
         });
+}
+
+function logOff() {
+    document.cookie = "token=; max-age=-1; path=/;";
+    location.replace("/register/sign-up.html");
 }
