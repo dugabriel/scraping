@@ -15,13 +15,21 @@ $(document).ready(function () {
 
 });
 
-
 function createNewSearch() {
     let searchText = $("#searchText").val();
     let selectFrequency = $("#selectFrequency").val();
 
+    if (validateFields(searchText, selectFrequency)) {
+        createSearch(searchText, selectFrequency);
+        $("#searchText").val("");
+    }
 }
 
 function validateFields(searchText, selectFrequency) {
 
+    if (searchText == "" || selectFrequency == "") {
+        alert('Preencha os campos para cadastrar uma busca');
+        return false;
+    }
+    return true;
 }
