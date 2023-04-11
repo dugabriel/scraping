@@ -45,8 +45,9 @@ public class SearchService {
     }
 
     @Transactional
-    public List<Search> findResearches(String userId) {
-        return searchRepository.findByUserId(userId);
+    public List<Search> findResearches(String username) {
+        User user = userService.findByUsername(username).orElseThrow(()-> new UserNotFoundException("User not found!"));
+        return searchRepository.findByUserId(user.getId());
     }
 
     @Transactional
