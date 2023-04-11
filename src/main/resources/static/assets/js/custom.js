@@ -28,7 +28,9 @@ function createNewSearch() {
 }
 
 function removeRow(element) {
-    console.log(element);
+    
+    
+    $(element).closest('tr').remove();
 }
 
 function validateFields(searchText, selectFrequency) {
