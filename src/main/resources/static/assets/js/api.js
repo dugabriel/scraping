@@ -51,6 +51,7 @@ function getToken(email, password) {
         })
         .fail(function (response) {
             console.log(response);
+            document.cookie = "token=; max-age=-1; path=/;";
             alert('Login ou senha inválida')
             return false;
         });
