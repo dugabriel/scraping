@@ -28,10 +28,8 @@ public class SearchController {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         log.info("User auth {}", userDetails.getUsername());
 
-        searchDTO.setUserId(userDetails.getUsername());
-
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(searchService.create(mapper.map(searchDTO, Search.class)));
+                .body(searchService.create(mapper.map(searchDTO, Search.class), userDetails.getUsername()));
     }
     @GetMapping("/{userId}")
     public ResponseEntity<List<Search>> findSearchListFromUser(@PathVariable String userId) {

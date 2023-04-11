@@ -2,6 +2,7 @@ package com.scraping.service;
 
 import com.scraping.configuration.QuartzConfig;
 import com.scraping.domain.Search;
+import com.scraping.domain.User;
 import com.scraping.exception.SchedulerErrorException;
 import com.scraping.exception.SearchNotFoundException;
 import com.scraping.exception.UserNotFoundException;
@@ -30,8 +31,9 @@ public class SearchService {
     private QuartzConfig quartzConfig;
 
     @Transactional
-    public Search create(Search search) {
-        checkValidUser(search.getUserId());
+    public Search create(Search search, String username) {
+        String userId = checkValidUser(username);
+        search.setUserId(userId);
         Search createdSearch = searchRepository.insert(search);
         createJob(createdSearch.getId(), createdSearch.getFrequency().getValue());
         return createdSearch;
@@ -54,10 +56,13 @@ public class SearchService {
         searchRepository.deleteById(searchId);
     }
 
-    private void checkValidUser(String userId) {
-        if (userService.findById(userId).isEmpty()) {
+    private String checkValidUser(String username) {
+        Optional<User> userOptional = userService.findByUsername(username);
+
+        if (userOptional.isEmpty()) {
             throw new UserNotFoundException("user not found");
         }
+        return userOptional.get().getId();
     }
 
     private void checkValidSearch(String searchId) {
