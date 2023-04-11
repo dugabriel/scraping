@@ -11,9 +11,6 @@ import jakarta.validation.constraints.NotNull;
 @Data
 public class SearchDTO {
 
-    @NotBlank
-    @NotNull
-    @NotEmpty
     private String userId;
 
     private SearchSource source;

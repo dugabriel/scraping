@@ -45,7 +45,7 @@ function setToken(email, password) {
     $.ajax(settings)
         .done(function (response) {
             console.log(response);
-            document.cookie = "token=Bearer "+response.token+"; max-age=86400; path=/;";
+            document.cookie = "token=Bearer " + response.token + "; max-age=86400; path=/;";
             location.replace("/");
         })
         .fail(function (response) {
@@ -56,7 +56,50 @@ function setToken(email, password) {
         });
 }
 
+function createSearch(searchExpression, frequency) {
+    var settings = {
+        "url": baseURL + "/api/v1/search",
+        "method": "POST",
+        "timeout": 0,
+        "headers": {
+            "accept": "*/*",
+            "Content-Type": "application/json",
+            "Authorization": getCookie('token')
+        },
+        "data": JSON.stringify({
+            "source": "OLX",
+            "searchExpression": searchExpression,
+            "frequency": "DAY"
+        }),
+    };
+
+    $.ajax(settings)
+        .done(function (response) {
+            console.log(response);
+        })
+        .fail(function (response) {
+            console.log(response);
+            alert('Erro ao cadastrar busca');
+        });
+}
+
 function logOff() {
     document.cookie = "token=; max-age=-1; path=/;";
     location.replace("/login/sign-in.html");
+}
+
+function getCookie(token) {
+    let name = token + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
 }
