@@ -58,5 +58,5 @@ function setToken(email, password) {
 
 function logOff() {
     document.cookie = "token=; max-age=-1; path=/;";
-    location.replace("/register/sign-up.html");
+    location.replace("/login/sign-in.html");
 }
