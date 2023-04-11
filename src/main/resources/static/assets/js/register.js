@@ -12,9 +12,7 @@ function createUser() {
 
 
     if (validateFields(name, email, password, repassword)) {
-        if (register(name, password, email)) {
-            location.replace("/login/sign-in.html");
-        }
+        register(name, password, email);
     }
 }
 

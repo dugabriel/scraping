@@ -9,11 +9,7 @@ function login() {
     let password = $("#password").val();
 
     if (validateFields(email, password)) {
-        if (getToken(email, password)) {
-            location.replace("/");
-        } else {
-            $("#password").val("");
-        }
+        setToken(email, password);
     }
 }
 function validateFields(email, password) {
@@ -21,6 +17,5 @@ function validateFields(email, password) {
         alert('Insira o e-mail e senha');
         return false;
     }
-
     return true;
 }

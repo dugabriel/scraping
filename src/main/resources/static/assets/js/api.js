@@ -19,16 +19,15 @@ function register(name, password, email) {
     $.ajax(settings)
         .done(function (response) {
             console.log(response);
-            return true;
+            location.replace("/login/sign-in.html");
         })
         .fail(function (response) {
             console.log(response);
             alert('Ocorreu um erro ao efetuar o cadastro');
-            return false;
         });
 }
 
-function getToken(email, password) {
+function setToken(email, password) {
     var settings = {
         "url": baseURL + "/api/v1/auth/token",
         "method": "POST",
@@ -47,13 +46,13 @@ function getToken(email, password) {
         .done(function (response) {
             console.log(response);
             document.cookie = "token=Bearer "+response.token+"; max-age=86400; path=/;";
-            return true;
+            location.replace("/");
         })
         .fail(function (response) {
             console.log(response);
             document.cookie = "token=; max-age=-1; path=/;";
+            $("#password").val("");
             alert('Login ou senha inválida')
-            return false;
         });
 }
 

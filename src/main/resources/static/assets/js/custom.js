@@ -4,6 +4,11 @@ $(document).ready(function () {
     if (token == "") {
         location.replace("/login/sign-in.html");
     }
+
+    $("#logOut").on('click', function () {
+        logOff();
+    });
+
 });
 
 function getCookie(token) {
