@@ -13,6 +13,7 @@ $(document).ready(function () {
         createNewSearch();
     });
 
+    listSearches();
 });
 
 function createNewSearch() {
@@ -24,6 +25,10 @@ function createNewSearch() {
         $("#searchText").val("");
         listSearches();
     }
+}
+
+function removeRow(element) {
+    console.log(element);
 }
 
 function validateFields(searchText, selectFrequency) {
