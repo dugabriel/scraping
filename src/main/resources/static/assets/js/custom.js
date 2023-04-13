@@ -20,7 +20,7 @@ function createNewSearch() {
     let searchText = $("#searchText").val();
     let selectFrequency = $("#selectFrequency").val();
 
-    const urlRegex = new RegExp(/^https:\/\/olx\.com\.br/, "gm");
+    const urlRegex = new RegExp(/^https:\/\/(www\.)?olx\.com\.br/, "gm");
 
     if (!urlRegex.test(searchText)) {
         alert('Url inválida')
