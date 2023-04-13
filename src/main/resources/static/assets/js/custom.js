@@ -22,12 +22,10 @@ function createNewSearch() {
 
     const urlRegex = new RegExp(/^https:\/\/olx\.com\.br\/?$/, "gm");
 
-    if (!urlRegex.test(email)) {
+    if (!urlRegex.test(searchText)) {
         alert('Url inválida')
         return false;
     }
-
-    
 
     if (validateFields(searchText, selectFrequency)) {
         createSearch(searchText, selectFrequency);
