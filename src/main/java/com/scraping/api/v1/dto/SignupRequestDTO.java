@@ -8,11 +8,10 @@ import lombok.Data;
 @Data
 public class SignupRequestDTO {
   @NotBlank
-  @Size(min = 3, max = 20)
   private String name;
 
   @NotBlank
-  @Size(max = 50)
+  @Size(max = 100)
   @Email
   private String email;
 
