@@ -13,7 +13,9 @@ $(document).ready(function () {
         createNewSearch();
     });
 
-    listSearches();
+    if (token) {
+        listSearches();
+    }
 });
 
 function createNewSearch() {
