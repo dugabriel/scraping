@@ -19,3 +19,9 @@ function validateFields(email, password) {
     }
     return true;
 }
+
+function handleEnter(e) {
+    if(e.keyCode === 13){
+        login();
+    }
+  }
