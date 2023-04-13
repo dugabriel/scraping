@@ -51,8 +51,8 @@ public class SearchService {
     }
 
     @Transactional
-    public void deleteSearch(String searchId) {
-        checkValidSearch(searchId);
+    public void deleteSearch(String searchId, String username) {
+        checkValidSearch(searchId, username);
         removeJob(searchId);
         searchRepository.deleteById(searchId);
     }
@@ -66,7 +66,8 @@ public class SearchService {
         return userOptional.get().getId();
     }
 
-    private void checkValidSearch(String searchId) {
+    private void checkValidSearch(String searchId, String username) {
+        searchRepository.findByUserId()
         if (searchRepository.findById(searchId).isEmpty()) {
             throw new SearchNotFoundException("search not found");
         }

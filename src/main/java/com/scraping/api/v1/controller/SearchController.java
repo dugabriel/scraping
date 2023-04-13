@@ -26,7 +26,7 @@ public class SearchController {
     @PostMapping
     public ResponseEntity<Search> createSearch(@Valid @RequestBody SearchDTO searchDTO) {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        log.info("User auth {}", userDetails.getUsername());
+        log.info("Create search. User auth {}", userDetails.getUsername());
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(searchService.create(mapper.map(searchDTO, Search.class), userDetails.getUsername()));
@@ -34,14 +34,16 @@ public class SearchController {
     @GetMapping()
     public ResponseEntity<List<Search>> findSearchListFromUser() {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        log.info("User auth {}", userDetails.getUsername());
+        log.info("List search. User auth {}", userDetails.getUsername());
         return ResponseEntity.status(HttpStatus.OK)
                 .body(searchService.findResearches(userDetails.getUsername()));
     }
 
     @DeleteMapping("/remove/{searchId}")
     public ResponseEntity deleteSearch(@PathVariable String searchId) {
-        searchService.deleteSearch(searchId);
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        log.info("Remove search. User auth {}", userDetails.getUsername());
+        searchService.deleteSearch(searchId, userDetails.getUsername());
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

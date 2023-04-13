@@ -154,8 +154,25 @@ function listSearches() {
         });
 }
 
-function removeSearch() {
+function removeSearch(searchId, element) {
+    var settings = {
+        "url": baseURL + "/api/v1/search/remove/" + searchId,
+        "method": "DELETE",
+        "timeout": 0,
+        "headers": {
+            "accept": "*/*",
+            "Authorization": getCookie('token')
+        },
+    };
 
+    $.ajax(settings)
+        .done(function (response) {
+            console.log(response);
+            $(element).closest('tr').remove();
+        })
+        .fail(function (response) {
+            alert('Erro ao remover busca')
+        });
 }
 
 function logOff() {
