@@ -35,7 +35,7 @@ public class SearchService {
         String userId = checkValidUser(username);
         search.setUserId(userId);
         Search createdSearch = searchRepository.insert(search);
-        createJob(createdSearch.getId(), createdSearch.getFrequency().getValue());
+        createJob(createdSearch.getId(), createdSearch.getFrequency().getValue(), username);
         return createdSearch;
     }
 
@@ -52,7 +52,7 @@ public class SearchService {
 
     @Transactional
     public void deleteSearch(String searchId, String username) {
-        checkValidSearch(searchId, username);
+        checkValidSearch(username);
         removeJob(searchId);
         searchRepository.deleteById(searchId);
     }
@@ -66,14 +66,14 @@ public class SearchService {
         return userOptional.get().getId();
     }
 
-    private void checkValidSearch(String searchId, String username) {
-        searchRepository.findByUserId()
-        if (searchRepository.findById(searchId).isEmpty()) {
+    private void checkValidSearch(String username) {
+        User user = userService.findByUsername(username).orElseThrow(() -> new UserNotFoundException("User not found"));
+        if (searchRepository.findByUserId(user.getId()).isEmpty()) {
             throw new SearchNotFoundException("search not found");
         }
     }
 
-    private void createJob(String searchId, int frequency) {
+    private void createJob(String searchId, int frequency, String username) {
         JobDetail jobDetail = JobBuilder.newJob(SchedulingService.class).withIdentity(searchId).build();
         jobDetail.getJobDataMap().put("searchId", searchId);
 
@@ -92,7 +92,7 @@ public class SearchService {
             scheduler.start();
         } catch (IOException | SchedulerException e) {
             log.error("An error occurred. Removing search with id {}", searchId);
-            deleteSearch(searchId);
+            deleteSearch(searchId, username);
             throw new SchedulerErrorException(e.getMessage());
         }
     }
