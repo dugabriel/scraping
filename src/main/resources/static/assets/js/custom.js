@@ -20,6 +20,15 @@ function createNewSearch() {
     let searchText = $("#searchText").val();
     let selectFrequency = $("#selectFrequency").val();
 
+    const urlRegex = new RegExp(/^https:\/\/olx\.com\.br\/?$/, "gm");
+
+    if (!urlRegex.test(email)) {
+        alert('Url inválida')
+        return false;
+    }
+
+    
+
     if (validateFields(searchText, selectFrequency)) {
         createSearch(searchText, selectFrequency);
         $("#searchText").val("");
