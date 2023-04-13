@@ -69,13 +69,14 @@ function createSearch(searchExpression, frequency) {
         "data": JSON.stringify({
             "source": "OLX",
             "searchExpression": searchExpression,
-            "frequency": "DAY"
+            "frequency": frequency
         }),
     };
 
     $.ajax(settings)
         .done(function (response) {
             console.log(response);
+            listSearches();
         })
         .fail(function (response) {
             console.log(response);
@@ -96,7 +97,8 @@ function listSearches() {
 
     $.ajax(settings)
         .done(function (response) {
-            console.log(response);
+            console.log("Load table size " + response);
+            $("#tableListSearches").find("tr").remove();
 
             for (var i in response) {
                 let frequency = response[i].frequency;

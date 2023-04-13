@@ -30,7 +30,6 @@ function createNewSearch() {
     if (validateFields(searchText, selectFrequency)) {
         createSearch(searchText, selectFrequency);
         $("#searchText").val("");
-        listSearches();
     }
 }
 
