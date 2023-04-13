@@ -122,7 +122,7 @@ function listSearches() {
                         frequencySanitized = "Desconhecido";
                 }
 
-                $('#tableListSearches > tbody:last-child').append(
+                $('#tableListSearches > tbody').append(
                     `<tr>
                         <td width="5%">
                             <div class="d-flex px-2">
